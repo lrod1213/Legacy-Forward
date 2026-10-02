@@ -11,7 +11,7 @@ export default function NotFound() {
           That page is not part of the campaign
         </h1>
         <p className="mt-4 text-lg leading-relaxed">
-          The address does not match a page on this Legacy Forward shell. Return
+          The address does not match a page on this Legacy Forward site. Return
           home, or leave a note about a gift.
         </p>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">

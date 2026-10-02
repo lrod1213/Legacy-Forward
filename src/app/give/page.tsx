@@ -6,7 +6,7 @@ import { campaign } from "@/lib/campaign"
 export const metadata = {
   title: "Ways to give",
   description:
-    "A starter note for Legacy Forward, the capital campaign for Legacy Christian Academy. This form does not send mail or take a gift.",
+    "Tell Legacy Forward whether you hope to make a gift, make a commitment, or start a conversation. This form does not take a payment.",
 }
 
 export default function GivePage() {
@@ -16,17 +16,16 @@ export default function GivePage() {
         <div>
           <p className="campaign-label">Ways to give</p>
           <h1 className="campaign-headline mt-3 text-4xl md:text-6xl">
-            Leave a note of intention
+            There is a place for your yes
           </h1>
           <p className="mt-4 text-lg leading-relaxed">
-            {campaign.formalName}. This page is a starter. It does not accept a
-            payment, record a pledge, or deliver a message to{" "}
-            {campaign.school}.
+            {campaign.formalName}. Families across the community are considering
+            their own role in this moment. Tell us whether you hope to make a
+            gift, make a commitment, or start a conversation.
           </p>
           <p className="mt-4 text-base leading-relaxed">
-            When the approved case statement names how gifts are received, this
-            form can be pointed there. Until then, a completed note stays in
-            this browser session only.
+            This form records that intention in this session. It does not
+            process a payment or deliver a message to {campaign.school} yet.
           </p>
         </div>
         <div className="rounded-xl bg-white p-5 ring-1 ring-sage md:p-8">

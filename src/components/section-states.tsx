@@ -5,7 +5,7 @@ import type { PanelState } from "@/lib/campaign"
 import { cn } from "cn"
 
 const options = [
-  { value: "empty", label: "Empty" },
+  { value: "empty", label: "Published" },
   { value: "loading", label: "Loading" },
   { value: "error", label: "Error" },
 ] as const

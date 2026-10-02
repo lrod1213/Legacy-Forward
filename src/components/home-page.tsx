@@ -6,7 +6,6 @@ import {
   LoadingRows,
   StatePreview,
 } from "@/components/section-states"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
   Accordion,
@@ -23,8 +22,12 @@ import {
 } from "@/components/ui/card"
 import {
   campaign,
+  campaignUpdate,
   faqs,
+  nextSteps,
   prioritySlots,
+  progressFigures,
+  progressNote,
   promiseWords,
   waysToGive,
   type PanelState,
@@ -49,10 +52,11 @@ export function HomePage({
               A future of promise
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/95">
-              Legacy Forward honors what has been built at Legacy Christian
-              Academy and commits us to carrying it into the next generation.
-              Every gift makes possible a future for our students shaped by
-              faith, excellence, and opportunity.
+              Legacy Forward is the most significant capital campaign in the
+              history of {campaign.school}. It honors what has been built and
+              commits us to carrying it into the next generation. Every gift
+              makes possible a future for our students shaped by faith,
+              excellence, and opportunity.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button
@@ -87,14 +91,15 @@ export function HomePage({
 
       <section id="impact" className="bg-mist">
         <div className="mx-auto max-w-6xl px-4 py-16 md:py-24">
-          <p className="campaign-label">The promise</p>
+          <p className="campaign-label">The vision</p>
           <h2 className="campaign-headline mt-3 max-w-3xl text-4xl md:text-5xl">
             What every gift makes possible
           </h2>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed">
-            A future for our students shaped by faith, excellence, and
-            opportunity. These words come from the campaign tagline. They are
-            not a published impact report.
+            For 27 years, God has faithfully guided {campaign.school}. Today,
+            approximately 1,500 students from more than 50 zip codes benefit
+            from an education grounded in biblical truth and committed to
+            excellence.
           </p>
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {promiseWords.map((word) => (
@@ -119,19 +124,28 @@ export function HomePage({
             ) : figuresState === "error" ? (
               <ErrorPanel
                 title="Figures are unavailable"
-                body="The goal, timeline, and totals could not be shown. Nothing is missing from a published report — this shell does not have those figures yet."
+                body="The September 2026 campaign totals could not be shown. Please try again."
                 href="/#impact"
               />
             ) : (
-              <div className="rounded-xl border border-dashed border-legacy/30 bg-white px-5 py-8 md:px-8">
-                <p className="campaign-label">Empty</p>
-                <h3 className="campaign-headline mt-3 text-3xl">
-                  Campaign figures are not published
-                </h3>
-                <p className="mt-3 max-w-2xl text-base leading-relaxed">
-                  Goal, timeline, and impact totals will appear here only after
-                  they are confirmed in the approved case statement. No dollar
-                  goal is shown, because none is in the brand guide.
+              <div>
+                <div className="grid gap-4 md:grid-cols-3">
+                  {progressFigures.map((figure) => (
+                    <div
+                      key={figure.label}
+                      className="rounded-xl bg-white px-5 py-8 ring-1 ring-sage"
+                    >
+                      <p className="campaign-headline text-3xl md:text-4xl">
+                        {figure.value}
+                      </p>
+                      <p className="mt-3 text-base leading-relaxed">
+                        {figure.label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+                <p className="mt-4 max-w-2xl text-sm leading-relaxed">
+                  {progressNote}
                 </p>
               </div>
             )}
@@ -148,19 +162,18 @@ export function HomePage({
             The work a gift will carry forward
           </h2>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed">
-            Project names stay consistent with the approved case statement.
-            These three places are ready for them. Each card is starter copy.
+            Legacy Forward will help the campus support the programs, personal
+            discipleship, and student experiences that distinguish an LCA
+            education. These projects are investments in the students,
+            educators, and programs that will shape the future of the school.
           </p>
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
             {prioritySlots.map((slot) => (
               <Card key={slot.index} className="bg-white ring-sage">
                 <CardHeader>
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="inline-flex h-10 min-w-10 items-center justify-center bg-gold px-2 font-heading text-lg font-extrabold text-legacy italic">
-                      {slot.index}
-                    </span>
-                    <Badge className="bg-honey text-legacy">Starter</Badge>
-                  </div>
+                  <span className="inline-flex h-10 min-w-10 items-center justify-center bg-gold px-2 font-heading text-lg font-extrabold text-legacy italic">
+                    {slot.index}
+                  </span>
                   <CardTitle className="campaign-headline mt-3 text-2xl">
                     {slot.title}
                   </CardTitle>
@@ -194,16 +207,15 @@ export function HomePage({
             There is a place for your yes
           </h2>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-white/95">
-            The paths below are starters, labeled as such. They show how the
-            campaign will invite a gift. They do not take payment or send a
-            message.
+            A commitment, a gift, or a conversation each helps move this vision
+            forward. Families who have already stepped forward give the school
+            confidence to invite others into this moment.
           </p>
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {waysToGive.map((way) => (
               <Card key={way.title} className="bg-white text-legacy ring-0">
                 <CardHeader>
-                  <Badge className="bg-honey text-legacy">Starter</Badge>
-                  <CardTitle className="campaign-headline mt-3 text-2xl">
+                  <CardTitle className="campaign-headline text-2xl">
                     {way.title}
                   </CardTitle>
                 </CardHeader>
@@ -225,35 +237,59 @@ export function HomePage({
 
       <section id="stories" className="bg-white">
         <div className="mx-auto max-w-6xl px-4 py-16 md:py-24">
-          <p className="campaign-label">Stories</p>
+          <p className="campaign-label">Campaign update</p>
           <h2 className="campaign-headline mt-3 max-w-3xl text-4xl md:text-5xl">
-            Voices from the school community
+            {campaignUpdate.title}
           </h2>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed">
-            Approved stories will be gathered here. The brand guide does not
-            include any, so this shell does not invent them.
+            A message from {campaignUpdate.author}, {campaignUpdate.role}.
           </p>
           <div className="mt-10">
             {storiesState === "loading" ? (
-              <LoadingRows label="stories" />
+              <LoadingRows label="the campaign update" />
             ) : storiesState === "error" ? (
               <ErrorPanel
-                title="Stories could not be loaded"
-                body="Please try again in a moment. No story was lost, because none has been published on this shell."
+                title="The update could not be loaded"
+                body="The September 2026 message from Head of School Kevin Mosley did not load. Please try again."
                 href="/#stories"
               />
             ) : (
-              <div className="rounded-xl border border-dashed border-legacy/30 bg-mist/50 px-5 py-10 md:px-8">
-                <p className="campaign-label">Empty</p>
-                <h3 className="campaign-headline mt-3 text-3xl">
-                  No approved stories yet
+              <article className="rounded-xl bg-mist/50 px-5 py-8 ring-1 ring-sage md:px-8 md:py-10">
+                <p className="campaign-label">{campaignUpdate.kicker}</p>
+                <div className="mt-6 space-y-4 text-base leading-relaxed">
+                  {campaignUpdate.paragraphs.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
+                <h3 className="campaign-headline mt-10 text-3xl">
+                  Our next steps
                 </h3>
                 <p className="mt-3 max-w-2xl text-base leading-relaxed">
-                  When a story is approved, it will name a person, a place in
-                  the school, and the hope a gift carries forward. Until then,
-                  this space stays open.
+                  In the months ahead, our leadership team will remain focused
+                  on careful planning, financial responsibility, and thoughtful
+                  decision-making.
                 </p>
-              </div>
+                <ul className="mt-4 list-disc space-y-2 pl-5 text-base leading-relaxed">
+                  {nextSteps.map((step) => (
+                    <li key={step}>{step}</li>
+                  ))}
+                </ul>
+                <blockquote className="mt-10 border-l-4 border-gold pl-4">
+                  <p className="font-heading text-2xl font-bold italic">
+                    “{campaignUpdate.scripture}”
+                  </p>
+                  <footer className="mt-2 text-sm font-semibold">
+                    {campaignUpdate.scriptureRef}
+                  </footer>
+                </blockquote>
+                <p className="mt-8 text-base leading-relaxed">
+                  With sincere gratitude,
+                  <br />
+                  <span className="font-semibold">{campaignUpdate.author}</span>
+                  <br />
+                  {campaignUpdate.role}
+                </p>
+              </article>
             )}
             <StatePreview param="stories" state={storiesState} anchor="stories" />
           </div>

@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     template: "%s | Legacy Forward",
   },
   description:
-    "Legacy Forward is the capital campaign for Legacy Christian Academy in Frisco, Texas. A future of promise, shaped by faith, excellence, and opportunity.",
+    "Legacy Forward is the capital campaign for Legacy Christian Academy in Frisco, Texas. Twenty families have committed $6.725 million toward academic space, fine arts, athletics, and campus life.",
 }
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

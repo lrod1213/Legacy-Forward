@@ -16,7 +16,7 @@ export default function Error({
           This page did not load
         </h1>
         <p className="mt-4 text-lg leading-relaxed">
-          The campaign shell hit an error. Your place in the story is unchanged.
+          The campaign page hit an error. Your place in the story is unchanged.
           Try the page again.
         </p>
         <Button type="button" className="mt-6 h-11 px-5" onClick={() => reset()}>

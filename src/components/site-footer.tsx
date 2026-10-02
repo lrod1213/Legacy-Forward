@@ -41,9 +41,10 @@ export function SiteFooter() {
         <div>
           <p className="campaign-label text-white">Questions</p>
           <p className="mt-4 text-sm leading-relaxed text-white/90">
-            Contact the {campaign.contact} team. This shell does not list a
-            street address, phone number, or email, because the brand guide
-            leaves those fields blank.
+            The {campaign.update} update is from {campaign.headOfSchool}, Head
+            of School. Questions can also go to the {campaign.contact} team.
+            That update does not include a street address, phone number, or
+            email.
           </p>
           <p className="mt-4 text-sm leading-relaxed text-white/90">
             {campaign.school} remains the sponsoring institution. School
@@ -54,8 +55,8 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-white/15">
         <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-4 text-xs text-white/80 sm:flex-row sm:items-center sm:justify-between">
-          <p>Legacy Forward capital campaign. Brand guidelines, September 2026.</p>
-          <p>Copy marked Starter is not the approved case statement.</p>
+          <p>Legacy Forward capital campaign. Update, {campaign.update}.</p>
+          <p>“Commit your work to the Lord, and your plans will be established.” Proverbs 16:3</p>
         </div>
       </div>
       <ForwardStripe />

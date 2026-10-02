@@ -77,12 +77,12 @@ export function InterestForm() {
       <div className="rounded-xl border border-sage bg-mist px-5 py-8" role="status">
         <p className="campaign-label">Received here only</p>
         <h2 className="campaign-headline mt-3 text-3xl">
-          Thank you. This note was not sent.
+          Thank you for wanting to take part.
         </h2>
         <p className="mt-3 text-base leading-relaxed">
-          The care behind it is real. Legacy Forward does not have a connected
-          inbox yet, so Marketing and Communications did not receive this note.
-          When a destination is approved, this page will use it.
+          This note stayed in this session. Legacy Forward does not have a
+          connected inbox yet, so the campaign team did not receive it. When a
+          destination is connected, this page will use it.
         </p>
         <Button
           type="button"
