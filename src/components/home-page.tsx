@@ -171,7 +171,7 @@ export function HomePage({
             {prioritySlots.map((slot) => (
               <Card key={slot.index} className="bg-white ring-sage">
                 <CardHeader>
-                  <span className="inline-flex h-10 min-w-10 items-center justify-center bg-gold px-2 font-heading text-lg font-extrabold text-legacy italic">
+                  <span className="inline-flex h-10 w-fit min-w-10 items-center justify-center justify-self-start bg-gold px-2 font-heading text-lg font-extrabold text-legacy italic">
                     {slot.index}
                   </span>
                   <CardTitle className="campaign-headline mt-3 text-2xl">
