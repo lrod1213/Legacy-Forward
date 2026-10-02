@@ -1,10 +1,6 @@
 import type { Metadata } from "next"
 import { Open_Sans, Vollkorn } from "next/font/google"
 
-import { ForwardStripe } from "@/components/forward-stripe"
-import { SiteFooter } from "@/components/site-footer"
-import { SiteHeader } from "@/components/site-header"
-
 import "./globals.css"
 
 const openSans = Open_Sans({
@@ -38,18 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${openSans.variable} ${vollkorn.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-white text-legacy">
-        <a
-          href="#content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-gold focus:px-3 focus:py-2 focus:text-legacy"
-        >
-          Skip to content
-        </a>
-        <ForwardStripe />
-        <SiteHeader />
-        <div id="content" className="flex-1">
-          {children}
-        </div>
-        <SiteFooter />
+        {children}
       </body>
     </html>
   )
